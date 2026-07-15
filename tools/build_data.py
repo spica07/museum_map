@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """museums_raw.json (공공데이터포털 전국박물관미술관정보표준데이터)
++ museums_extra.json (표준데이터 누락분 수동 보강)
 -> assets/js/data.js 생성
 
 - 국립·공립만 사용 (사립·대학 제외)
-- 지역(17개 시도)·시군구 파싱, 이름+지역+시군구 기준 중복 제거(기준일 최신 우선)
+- 지역(17개 시도)·시군구 파싱, 정규화 이름+지역+시군구 기준 중복 제거(기준일 최신 우선)
+  (정규화: 공백·'광역' 제거 — "부산광역시립미술관" == "부산시립미술관")
 - 요금(무료 판정)·관람시간·휴관정보 정리
 """
 import json
@@ -17,7 +19,12 @@ sys.stdout.reconfigure(encoding="utf-8")
 TOOLS = Path(__file__).resolve().parent
 BASE = TOOLS.parent
 RAW = TOOLS / "museums_raw.json"
+EXTRA = TOOLS / "museums_extra.json"
 OUT = BASE / "assets" / "js" / "data.js"
+
+
+def norm_name(name):
+    return re.sub(r"\s|광역", "", name)
 
 REGION_PREFIX = [
     ("서울특별시", "서울"), ("서울시", "서울"), ("서울", "서울"),
@@ -135,7 +142,7 @@ def main():
             continue
 
         name = re.sub(r"\s+", " ", r["FCLTY_NM"]).strip()
-        key = (name, region, district or "")
+        key = (norm_name(name), region, district or "")
         ref = r.get("REFERENCE_DATE") or ""
         if key in items and items[key]["_ref"] >= ref:
             continue
@@ -183,6 +190,48 @@ def main():
             "operOrg": trim(r.get("OPER_INSTITUTION_NM"), 40),
             "refDate": ref,
         }
+
+    # ---------- 수동 보강분 병합 (표준데이터에 없는 시설만) ----------
+    survey = date.today().isoformat()
+    existing_names = {k[0] for k in items}
+    added_extra = 0
+    if EXTRA.exists():
+        extra = json.load(open(EXTRA, encoding="utf-8"))
+        for e in extra["items"]:
+            if norm_name(e["name"]) in existing_names:
+                print("  보강 건너뜀(이미 있음):", e["name"])
+                continue
+            region, district = parse_region_district(e["address"])
+            if not region:
+                print("  보강 건너뜀(주소 파싱 실패):", e["name"])
+                continue
+            key = (norm_name(e["name"]), region, district or "")
+            items[key] = {
+                "_ref": survey,
+                "name": e["name"],
+                "type": e["type"],
+                "kind": kind_of(e["name"]),
+                "region": region,
+                "district": district or "",
+                "address": e["address"],
+                "lat": e["lat"],
+                "lng": e["lng"],
+                "phone": e.get("phone", ""),
+                "homepage": e.get("homepage", ""),
+                "hoursWeek": e.get("hoursWeek", ""),
+                "hoursHol": e.get("hoursHol", ""),
+                "closed": e.get("closed", ""),
+                "isFree": e.get("isFree"),
+                "feeInfo": e.get("feeInfo", ""),
+                "feeEtc": e.get("feeEtc", ""),
+                "intro": e.get("intro", ""),
+                "transport": e.get("transport", ""),
+                "facility": e.get("facility", ""),
+                "operOrg": e.get("operOrg", ""),
+                "refDate": survey,
+            }
+            added_extra += 1
+    print("수동 보강 추가:", added_extra)
 
     out = []
     ordered = sorted(items.values(), key=lambda x: (REGION_ORDER.index(x["region"]), x["district"], x["name"]))
