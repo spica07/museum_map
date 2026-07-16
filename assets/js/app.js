@@ -86,6 +86,9 @@
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
   }
+  function safeUrl(u) {
+    return /^https?:\/\//i.test(String(u == null ? '' : u)) ? String(u) : '';
+  }
 
   function regionColor(r) { return REGION_COLOR[r] || '#8D6E63'; }
   function kindColor(k) { return KIND_COLOR[k] || '#8D6E63'; }
@@ -196,7 +199,7 @@
   function detailRow(k, v, isLink) {
     if (!v) return '';
     var val = isLink
-      ? '<a href="' + esc(v) + '" target="_blank" rel="noopener">' + esc(v) + '</a>'
+      ? (safeUrl(v) ? '<a href="' + esc(safeUrl(v)) + '" target="_blank" rel="noopener">' + esc(v) + '</a>' : esc(v))
       : esc(v);
     return '<div class="detail-item"><span class="k">' + k + '</span><span class="v">' + val + '</span></div>';
   }
@@ -237,7 +240,7 @@
       '</div>' +
       '<div class="modal-links">' +
         '<a class="link-btn map" href="' + naverUrl + '" target="_blank" rel="noopener">네이버 길찾기</a>' +
-        (f.homepage ? '<a class="link-btn web" href="' + esc(f.homepage) + '" target="_blank" rel="noopener">홈페이지</a>' : '') +
+        (safeUrl(f.homepage) ? '<a class="link-btn web" href="' + esc(safeUrl(f.homepage)) + '" target="_blank" rel="noopener">홈페이지</a>' : '') +
         '<button class="link-btn fav" data-fav="' + f.id + '">' + (fav ? '찜 해제' : '찜하기') + '</button>' +
       '</div>';
     document.getElementById('modalOverlay').hidden = false;
