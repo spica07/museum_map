@@ -5,14 +5,6 @@
   var MUSEUMS = window.MUSEUMS || [];
   var DATA_META = window.DATA_META || {};
 
-  var KIND_EMOJI = {
-    '박물관': '🏛️',
-    '미술관': '🎨',
-    '과학·생태': '🔬',
-    '역사·민속': '📜',
-    '문학관': '📚',
-    '전시·기타': '🖼️'
-  };
   var KIND_COLOR = {
     '박물관': '#C96F4A',
     '미술관': '#7C6FD9',
@@ -132,7 +124,7 @@
         fillOpacity: 0.9
       });
       var popupHtml =
-        '<div class="popup-name">' + KIND_EMOJI[f.kind] + ' ' + esc(f.name) + '</div>' +
+        '<div class="popup-name">' + esc(f.name) + '</div>' +
         '<div class="popup-meta">' + esc(f.region) + ' ' + esc(f.district) + ' · ' + esc(f.type) +
         (f.isFree === true ? ' · 무료' : '') + '</div>' +
         '<button class="popup-btn" data-popup-detail="' + f.id + '">자세히 보기</button>';
@@ -172,18 +164,18 @@
     if (f.isFree === true) tags.push('<span class="tag free">무료</span>');
     if (f.isFree === false) tags.push('<span class="tag paid">유료</span>');
     var info = [];
-    if (f.hoursWeek) info.push('<div class="card-info"><span class="ico">⏰</span>평일 ' + esc(f.hoursWeek) + '</div>');
-    info.push('<div class="card-info"><span class="ico">🚫</span>' + esc(f.closed ? '휴관: ' + f.closed : '휴관 정보 없음') + '</div>');
+    if (f.hoursWeek) info.push('<div class="card-info">평일 ' + esc(f.hoursWeek) + '</div>');
+    info.push('<div class="card-info">' + esc(f.closed ? '휴관: ' + f.closed : '휴관 정보 없음') + '</div>');
     return (
-      '<article class="facility-card" data-id="' + f.id + '" style="--cc1:' + kindColor(f.kind) + '33; --cc2:#FFFFFF">' +
-        '<div class="card-emoji">' + KIND_EMOJI[f.kind] +
-          '<button class="fav-btn" data-fav="' + f.id + '" aria-label="찜">' + (fav ? '❤️' : '🤍') + '</button>' +
-        '</div>' +
+      '<article class="facility-card" data-id="' + f.id + '">' +
         '<div class="card-body">' +
-          '<h3 class="card-name">' + esc(f.name) + '</h3>' +
+          '<div class="card-title-row">' +
+            '<h3 class="card-name">' + esc(f.name) + '</h3>' +
+            '<button class="fav-btn" data-fav="' + f.id + '" aria-label="찜">' + (fav ? '❤️' : '🤍') + '</button>' +
+          '</div>' +
           '<div class="card-tags">' + tags.join('') + '</div>' +
           info.join('') +
-          '<button class="card-locate" data-locate="' + f.id + '">📍 위치보기</button>' +
+          '<button class="card-locate" data-locate="' + f.id + '">위치보기</button>' +
         '</div>' +
       '</article>'
     );
@@ -215,7 +207,6 @@
     if (f.isFree === false && !feeText) feeText = '유료';
     var body = document.getElementById('modalBody');
     body.innerHTML =
-      '<div class="modal-emoji">' + KIND_EMOJI[f.kind] + '</div>' +
       '<h2 class="modal-title">' + esc(f.name) + '</h2>' +
       '<div class="modal-tags">' +
         '<span class="tag district" style="background:' + rc + '">' + esc(f.region) + (f.district ? ' ' + esc(f.district) : '') + '</span>' +
