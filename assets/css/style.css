@@ -171,9 +171,8 @@ body {
 .search-box {
   flex: 1; min-width: 220px; position: relative;
 }
-.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); }
 .search-box input {
-  width: 100%; padding: 11px 16px 11px 42px;
+  width: 100%; padding: 11px 16px;
   border: 2px solid var(--border-light); border-radius: 999px;
   font-family: inherit; font-size: 1rem; color: var(--brown-dark);
   outline: none; background: white; transition: box-shadow 0.2s, border-color 0.2s;

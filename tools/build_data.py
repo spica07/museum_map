@@ -5,10 +5,14 @@
 
 - 국립·공립만 사용 (사립·대학 제외)
 - 지역(17개 시도)·시군구 파싱, 정규화 이름+지역+시군구 기준 중복 제거(기준일 최신 우선)
-  (정규화: 공백·'광역' 제거 — "부산광역시립미술관" == "부산시립미술관")
+  (정규화: 공백·괄호·'광역' 제거 — "부산광역시립미술관" == "부산시립미술관")
+- 근접 중복 병합: "관세박물관"/"국립관세박물관"처럼 국립·시립 등 접두어나 표기만
+  다른 항목을 좌표 700m 이내(또는 같은 시군구) + 이름 포함 관계일 때 하나로 합침
+  (기준일 최신 항목을 남김)
 - 요금(무료 판정)·관람시간·휴관정보 정리
 """
 import json
+import math
 import re
 import sys
 from datetime import date
@@ -24,7 +28,49 @@ OUT = BASE / "assets" / "js" / "data.js"
 
 
 def norm_name(name):
-    return re.sub(r"\s|광역", "", name)
+    return re.sub(r"[\s()]|광역", "", name)
+
+
+def strip_prefix(name):
+    return re.sub(r"^(국립|공립|시립|도립|군립|구립)", "", norm_name(name))
+
+
+def approx_dist_m(a, b):
+    return math.dist((a["lat"], a["lng"]), (b["lat"], b["lng"])) * 111000
+
+
+def is_near_duplicate(a, b):
+    """같은 시설이 접두어(국립/시립 등)나 표기 차이로 두 번 등록된 경우를 잡는다.
+    이름이 서로 포함 관계이면서, 좌표가 700m 이내이거나 같은 시군구일 때만 병합한다.
+    """
+    na, nb = norm_name(a["name"]), norm_name(b["name"])
+    sa, sb = strip_prefix(a["name"]), strip_prefix(b["name"])
+    contain = na in nb or nb in na or sa == sb or sa in nb or sb in na
+    if not contain:
+        return False
+    same_district = bool(a["district"]) and a["district"] == b["district"]
+    return same_district or approx_dist_m(a, b) < 700
+
+
+def dedupe_near_duplicates(items_list):
+    """지역별로 묶어 기준일 최신 항목을 우선 채택, 유사 중복은 병합·제거."""
+    by_region = {}
+    for it in items_list:
+        by_region.setdefault(it["region"], []).append(it)
+
+    kept_all = []
+    for region, lst in by_region.items():
+        lst.sort(key=lambda x: x["_ref"], reverse=True)
+        kept = []
+        for cand in lst:
+            dup_of = next((k for k in kept if is_near_duplicate(cand, k)), None)
+            if dup_of:
+                print(f"  중복 병합: '{cand['name']}'({cand['_ref']}) -> "
+                      f"'{dup_of['name']}'({dup_of['_ref']}) 유지")
+                continue
+            kept.append(cand)
+        kept_all.extend(kept)
+    return kept_all
 
 REGION_PREFIX = [
     ("서울특별시", "서울"), ("서울시", "서울"), ("서울", "서울"),
@@ -101,6 +147,14 @@ def trim(s, n):
         return ""
     s = re.sub(r"\s+", " ", str(s)).strip()
     return s if len(s) <= n else s[: n - 1].rstrip() + "…"
+
+
+def delimit(s):
+    """원본 표준데이터는 휴관정보·편의시설·요금기타정보를 '+'로 이어 붙여 놓는다.
+    화면에 그대로 보이면 어색해서 '/'로 바꾼다."""
+    if not s:
+        return s
+    return re.sub(r"\s*\+\s*", " / ", str(s))
 
 
 def kind_of(name):
@@ -180,13 +234,13 @@ def main():
             "homepage": homepage,
             "hoursWeek": hours_str(r.get("WEEKDAY_OPER_OPEN_HHMM"), r.get("WEEKDAY_OPER_COLSE_HHMM")),
             "hoursHol": hours_str(r.get("HOLIDAY_OPER_OPEN_HHMM"), r.get("HOLIDAY_CLOSE_OPEN_HHMM")),
-            "closed": trim(r.get("RSTDE_INFO"), 90),
+            "closed": trim(delimit(r.get("RSTDE_INFO")), 90),
             "isFree": is_free,
             "feeInfo": fee_info,
-            "feeEtc": trim(r.get("ETC_CHRGE_INFO"), 120),
+            "feeEtc": trim(delimit(r.get("ETC_CHRGE_INFO")), 120),
             "intro": trim(r.get("FCLTY_INTRCN"), 220),
             "transport": trim(r.get("TRNSPORT_INFO"), 160),
-            "facility": trim(r.get("FCLTY_INFO"), 90),
+            "facility": trim(delimit(r.get("FCLTY_INFO")), 90),
             "operOrg": trim(r.get("OPER_INSTITUTION_NM"), 40),
             "refDate": ref,
         }
@@ -233,8 +287,11 @@ def main():
             added_extra += 1
     print("수동 보강 추가:", added_extra)
 
+    deduped = dedupe_near_duplicates(list(items.values()))
+    print("근접 중복 병합 후:", len(deduped), "(병합으로 제거:", len(items) - len(deduped), "건)")
+
     out = []
-    ordered = sorted(items.values(), key=lambda x: (REGION_ORDER.index(x["region"]), x["district"], x["name"]))
+    ordered = sorted(deduped, key=lambda x: (REGION_ORDER.index(x["region"]), x["district"], x["name"]))
     for i, it in enumerate(ordered, 1):
         it.pop("_ref")
         it["id"] = i

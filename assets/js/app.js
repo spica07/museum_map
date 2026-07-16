@@ -217,28 +217,28 @@
       '<div class="modal-tags">' +
         '<span class="tag district" style="background:' + rc + '">' + esc(f.region) + (f.district ? ' ' + esc(f.district) : '') + '</span>' +
         '<span class="tag type-' + esc(f.type) + '">' + esc(f.type) + '</span>' +
-        '<span class="tag">' + KIND_EMOJI[f.kind] + ' ' + esc(f.kind) + '</span>' +
+        '<span class="tag">' + esc(f.kind) + '</span>' +
         (f.isFree === true ? '<span class="tag free">무료</span>' : '') +
         (f.isFree === false ? '<span class="tag paid">유료</span>' : '') +
       '</div>' +
       (f.intro ? '<p class="modal-intro">' + esc(f.intro) + '</p>' : '') +
       '<div class="detail-list">' +
-        detailRow('📍 주소', f.address) +
-        detailRow('⏰ 평일 관람', f.hoursWeek) +
-        detailRow('🎌 공휴일 관람', f.hoursHol) +
-        detailRow('🚫 휴관일', f.closed) +
-        detailRow('💰 관람료', feeText) +
-        detailRow('💬 요금 참고', f.feeEtc) +
-        detailRow('🚌 교통', f.transport) +
-        detailRow('🚻 편의시설', f.facility) +
-        detailRow('📞 전화', f.phone) +
-        detailRow('🏢 운영기관', f.operOrg) +
-        detailRow('📆 자료 기준일', f.refDate) +
+        detailRow('주소', f.address) +
+        detailRow('평일 관람', f.hoursWeek) +
+        detailRow('공휴일 관람', f.hoursHol) +
+        detailRow('휴관일', f.closed) +
+        detailRow('관람료', feeText) +
+        detailRow('요금 참고', f.feeEtc) +
+        detailRow('교통', f.transport) +
+        detailRow('편의시설', f.facility) +
+        detailRow('전화', f.phone) +
+        detailRow('운영기관', f.operOrg) +
+        detailRow('자료 기준일', f.refDate) +
       '</div>' +
       '<div class="modal-links">' +
-        '<a class="link-btn map" href="' + naverUrl + '" target="_blank" rel="noopener">🧭 네이버 길찾기</a>' +
-        (f.homepage ? '<a class="link-btn web" href="' + esc(f.homepage) + '" target="_blank" rel="noopener">🏠 홈페이지</a>' : '') +
-        '<button class="link-btn fav" data-fav="' + f.id + '">' + (fav ? '❤️ 찜 해제' : '🤍 찜하기') + '</button>' +
+        '<a class="link-btn map" href="' + naverUrl + '" target="_blank" rel="noopener">네이버 길찾기</a>' +
+        (f.homepage ? '<a class="link-btn web" href="' + esc(f.homepage) + '" target="_blank" rel="noopener">홈페이지</a>' : '') +
+        '<button class="link-btn fav" data-fav="' + f.id + '">' + (fav ? '찜 해제' : '찜하기') + '</button>' +
       '</div>';
     document.getElementById('modalOverlay').hidden = false;
     document.body.style.overflow = 'hidden';
@@ -283,7 +283,7 @@
     MUSEUMS.forEach(function (f) { presentK[f.kind] = true; });
     var kPills = ['<button class="pill active" data-kind="">전체</button>'];
     KIND_ORDER.forEach(function (k) {
-      if (presentK[k]) kPills.push('<button class="pill" data-kind="' + k + '">' + KIND_EMOJI[k] + ' ' + k + '</button>');
+      if (presentK[k]) kPills.push('<button class="pill" data-kind="' + k + '">' + k + '</button>');
     });
     kindRow.insertAdjacentHTML('beforeend', kPills.join(''));
   }
@@ -371,7 +371,7 @@
   filterToggleBtn.addEventListener('click', function () {
     var willOpen = filterGroups.hidden;
     filterGroups.hidden = !willOpen;
-    filterToggleBtn.textContent = willOpen ? '🔼' : '🔽';
+    filterToggleBtn.textContent = willOpen ? '▲' : '▼';
     var label = willOpen ? '필터 닫기' : '필터 열기';
     filterToggleBtn.title = label;
     filterToggleBtn.setAttribute('aria-label', label);
