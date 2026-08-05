@@ -2,11 +2,11 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://unpkg.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <title>전국 공공 박물관·미술관 지도</title>
 <meta name="description" content="전국 국립·공립 박물관과 미술관 지도 — 지역별 조회, 검색, 관람시간·요금 정보">
-<meta name="theme-color" content="#8D6E63">
+<meta name="theme-color" content="#6E3B1F">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/icons/app-icon-512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/app-icon-apple-180.png">
@@ -18,12 +18,32 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<!--
+THESIS: 이 앱은 공공 안내 표지다. 크림 바탕에 그라디언트 제목을 얹은 지도앱 기본형을 거부한다.
+OWN-WORLD: 도로표지규칙 제8조의 문화·관광 갈색(#6E3B1F) 면색 판 + 흰 글자 녹아웃 + 판 안쪽 흰 테두리(inset).
+  그림자 없음, 그라디언트 없음. Do Hyeon / IBM Plex Sans KR / JetBrains Mono — 상위 브랜드 다있맵과 같은 활자.
+STORY: 부모가 오늘 갈 만한 곳을 골라내고 헛걸음(휴관·요금)을 피한다.
+FIRST VIEWPORT: 상단에 표지판 한 장(픽토그램·이름·시설 수 505), 그 아래 회색 주의 문구, 검색·시군구·필터,
+  그다음 지도 또는 카드 목록. 면색은 표지판·활성 필터·마커에만 나온다.
+FORM: 사용자가 3개 방향 중 직접 고른 pinned direction(공공 안내 표지 체계). concept-seed 미실행 — 룰렛보다 사용자 지정이 우선.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+-->
 
 <header class="app-header">
   <div class="header-inner">
-    <h1 class="app-title">전국 공공 박물관·미술관 지도</h1>
-    <div class="top-notice">참고용으로만 사용! 방문 전 휴관일을 꼭 확인하세요.</div>
+    <svg class="sign-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 2.2 22.4 8.6v2.1H1.6V8.6z"/>
+      <rect x="4" y="12.2" width="2.4" height="6.6"/>
+      <rect x="10.8" y="12.2" width="2.4" height="6.6"/>
+      <rect x="17.6" y="12.2" width="2.4" height="6.6"/>
+      <rect x="1.6" y="20.2" width="20.8" height="2.2"/>
+    </svg>
+    <div class="sign-text">
+      <h1 class="app-title">전국 공공 박물관·미술관</h1>
+    </div>
+    <p class="sign-count"><span class="num" id="totalCount">505</span><span class="unit">곳</span></p>
   </div>
+  <p class="app-notice">참고용입니다. 방문 전 휴관일을 꼭 확인하세요.</p>
 </header>
 
 <main class="container">
@@ -38,7 +58,9 @@
         <option value="">전체 시·군·구</option>
       </select>
       <button class="filter-collapse-btn" id="filterToggleBtn" type="button"
-              title="필터 열기" aria-label="필터 열기" aria-expanded="false">▼</button>
+              title="필터 열기" aria-label="필터 열기" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 9l7 7 7-7"/></svg>
+      </button>
     </div>
     <div class="filter-groups" id="filterGroups" hidden>
       <div class="filter-row" id="regionFilters" data-key="region">
@@ -61,8 +83,8 @@
       <div class="view-toggle" id="viewToggle">
         <button class="pill pill-sm" data-view="map">지도</button>
         <button class="pill pill-sm active" data-view="list">목록</button>
-        <button class="pill pill-sm" id="favOnly" data-toggle="favOnly">찜만 보기</button>
       </div>
+      <button class="pill pill-sm" id="favOnly" data-toggle="favOnly">찜만 보기</button>
       <span class="result-count" id="resultCount"></span>
     </div>
   </section>
@@ -93,7 +115,9 @@
 <!-- 상세 모달 -->
 <div class="modal-overlay" id="modalOverlay" hidden>
   <div class="modal-card" role="dialog" aria-modal="true">
-    <button class="modal-close" id="modalClose" aria-label="닫기">✕</button>
+    <button class="modal-close" id="modalClose" aria-label="닫기">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
     <div class="modal-body" id="modalBody"></div>
   </div>
 </div>

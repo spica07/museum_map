@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-06T00:00:00Z",
+  "title": "Design System: 전국 공공 박물관·미술관 지도",
+  "extensions": {
+    "colorMeta": {
+      "sign": {
+        "role": "primary",
+        "displayName": "표지 갈색 (Sign Brown)",
+        "canonical": "#6E3B1F",
+        "note": "도로표지규칙 제8조(문화재·관광 안내 = 갈색 바탕 흰 글자)에서 유도. 7개 지도 PWA 중 museum_map의 식별 축.",
+        "tonalRamp": ["#2A1608", "#3E2110", "#552D17", "#6E3B1F", "#8A5024", "#B07E52", "#D8B79C", "#F3ECE7"]
+      },
+      "sign-ink": {
+        "role": "primary",
+        "displayName": "표지 흰 글자 (Sign Ink)",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#262626", "#404040", "#5C5C5C", "#7A7A7A", "#9E9E9E", "#C4C4C4", "#E4E4E4", "#FFFFFF"]
+      },
+      "sign-wash": {
+        "role": "primary",
+        "displayName": "표지 옅은 바닥 (Sign Wash)",
+        "canonical": "#F3ECE7",
+        "tonalRamp": ["#2A1608", "#442313", "#5F3520", "#7C4C33", "#A57358", "#CDA187", "#E4CFC2", "#F3ECE7"]
+      },
+      "free": {
+        "role": "secondary",
+        "displayName": "무료 청록 (Free Teal)",
+        "canonical": "#176B5B",
+        "tonalRamp": ["#06231D", "#0B3830", "#104E42", "#176B5B", "#218873", "#40AE96", "#8ED3C3", "#DCF0EA"]
+      },
+      "paid": {
+        "role": "secondary",
+        "displayName": "유료 흙갈 (Paid Umber)",
+        "canonical": "#8A4B12",
+        "tonalRamp": ["#2B1605", "#42230A", "#5C310E", "#743E10", "#8A4B12", "#B4701F", "#DBA463", "#F4E2CE"]
+      },
+      "kind-1": {
+        "role": "tertiary",
+        "displayName": "박물관 갈색",
+        "canonical": "#8A5024",
+        "note": "265곳 — 과반 범주이므로 중간 명도",
+        "tonalRamp": ["#2B1809", "#412410", "#583117", "#70401D", "#8A5024", "#B0743F", "#D4A87E", "#F0DECB"]
+      },
+      "kind-2": {
+        "role": "tertiary",
+        "displayName": "미술관 모래",
+        "canonical": "#E3B577",
+        "note": "90곳",
+        "tonalRamp": ["#3A2708", "#553A11", "#71501C", "#8E682A", "#B3893F", "#D0A45C", "#E3B577", "#F6E7CE"]
+      },
+      "kind-3": {
+        "role": "tertiary",
+        "displayName": "과학·생태 이끼",
+        "canonical": "#4C7A55",
+        "note": "18곳 — 면색 계열 밖 이탈",
+        "tonalRamp": ["#12200F", "#1D3419", "#2A4A26", "#385F34", "#4C7A55", "#6E9C77", "#A0C4A6", "#DCEADF"]
+      },
+      "kind-4": {
+        "role": "tertiary",
+        "displayName": "역사·민속 흑갈",
+        "canonical": "#2E1A0C",
+        "note": "87곳 — 램프 최암, 명도로 확실히 분리",
+        "tonalRamp": ["#180C04", "#2E1A0C", "#452715", "#5E361D", "#7A4A2A", "#9E6B44", "#C79A75", "#EBDACA"]
+      },
+      "kind-5": {
+        "role": "tertiary",
+        "displayName": "문학관 청회",
+        "canonical": "#6B7C9B",
+        "note": "9곳 — 개체 수 최소이므로 색상 이탈 허용",
+        "tonalRamp": ["#161B24", "#232B39", "#333E52", "#45536C", "#586887", "#6B7C9B", "#9AA6BC", "#D6DCE6"]
+      },
+      "kind-6": {
+        "role": "tertiary",
+        "displayName": "전시·기타 회갈",
+        "canonical": "#A8A093",
+        "tonalRamp": ["#241F19", "#3A342A", "#514A3D", "#6A6153", "#877E6E", "#A8A093", "#C7C1B7", "#EBE8E2"]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "종이 (Paper)",
+        "canonical": "#F7F7F5",
+        "tonalRamp": ["#232322", "#3A3A38", "#53534F", "#6E6E69", "#8E8E88", "#B4B4AE", "#D8D8D3", "#F7F7F5"]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "판 흰색 (Panel White)",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#262626", "#404040", "#5C5C5C", "#7A7A7A", "#9E9E9E", "#C4C4C4", "#E9E9E9", "#FFFFFF"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "먹 (Ink)",
+        "canonical": "#1A1A18",
+        "tonalRamp": ["#0D0D0C", "#1A1A18", "#33322F", "#4C4B46", "#69675F", "#8C8A81", "#B8B6AD", "#E6E4DD"]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "흐린 먹 (Muted Ink)",
+        "canonical": "#5F5E58",
+        "tonalRamp": ["#171614", "#2A2926", "#3E3D39", "#5F5E58", "#7E7C74", "#A3A199", "#C8C6BE", "#EDEBE5"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "괘선 (Rule Line)",
+        "canonical": "#DCDBD4",
+        "tonalRamp": ["#22221E", "#3A3A34", "#54534B", "#706F65", "#918F84", "#B4B2A8", "#DCDBD4", "#F4F3EF"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "표지판 제목", "purpose": "헤더 표지판의 앱 이름. Do Hyeon이 쓰이는 유일한 자리. ≥640px에서 1.75rem." },
+      "numeric": { "displayName": "표지판 수치", "purpose": "시설 수·리포트 통계. JetBrains Mono + tabular-nums로 자리를 고정한다." },
+      "title": { "displayName": "카드 제목", "purpose": "카드 시설명, 모달 제목." },
+      "headline": { "displayName": "소제목", "purpose": "지도 팝업 시설명, 리포트 섹션 제목." },
+      "body": { "displayName": "본문", "purpose": "카드 정보, 상세 항목, 입력·pill·버튼 텍스트. 16px 하한." },
+      "label": { "displayName": "라벨", "purpose": "주의 문구, 필터 라벨, 태그, 결과 수, 푸터." }
+    },
+    "shadows": [
+      { "name": "sign-inset-border", "value": "inset 0 0 0 2px rgba(255,255,255,.9)", "purpose": "헤더 면색 판의 안쪽 흰 테두리. 실제 도로표지판 마감이며 헤더 외에는 복제하지 않는다." },
+      { "name": "adjacent-rule", "value": "inset 1px 0 0 var(--line)", "purpose": "붙어 있는 pill 사이 경계. 테두리를 그릴 수 없는 자리의 괘선 대체물." }
+    ],
+    "motion": [
+      { "name": "chevron-rotate", "value": "transform .18s ease", "purpose": "필터 토글 셰브런 180도 회전. 이 앱의 유일한 transition." },
+      { "name": "sheet-up", "value": "sheetUp .22s cubic-bezier(.2,.7,.3,1)", "purpose": "모바일 바텀시트 모달 진입(16px 상승 + 페이드)." },
+      { "name": "reduced-motion", "value": "transition: none !important; animation-duration: 1ms !important", "purpose": "prefers-reduced-motion에서 duration을 낮추는 대신 전환 자체를 끈다. duration만 낮추면 transition-property가 all인 채로 남아 상태 변화가 시작값에 고정돼 렌더되지 않는다." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "901px" },
+      { "name": "hover", "value": "(hover: hover)" }
+    ]
+  },
+  "components": [
+    {
+      "name": "표지판 헤더",
+      "kind": "custom",
+      "refersTo": "sign-header",
+      "description": "면색 판 하나에 픽토그램·앱 이름·시설 수를 얹고 안쪽 흰 테두리로 마감한 이 시스템의 서명 요소.",
+      "html": "<header class=\"ds-sign\"><svg class=\"ds-sign-mark\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 2.2 22.4 8.6v2.1H1.6V8.6z\"/><rect x=\"4\" y=\"12.2\" width=\"2.4\" height=\"6.6\"/><rect x=\"10.8\" y=\"12.2\" width=\"2.4\" height=\"6.6\"/><rect x=\"17.6\" y=\"12.2\" width=\"2.4\" height=\"6.6\"/><rect x=\"1.6\" y=\"20.2\" width=\"20.8\" height=\"2.2\"/></svg><h1 class=\"ds-sign-title\">전국 공공 박물관·미술관</h1><p class=\"ds-sign-count\"><span class=\"ds-num\">505</span><span class=\"ds-unit\">곳</span></p></header>",
+      "css": ".ds-sign { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 16px; background: var(--sign, #6E3B1F); color: var(--sign-ink, #fff); border-radius: 12px; box-shadow: inset 0 0 0 2px rgba(255,255,255,.9); font-family: 'IBM Plex Sans KR', sans-serif; } .ds-sign-mark { flex: 0 0 auto; width: 26px; height: 26px; fill: currentColor; } .ds-sign-title { flex: 1; min-width: 0; margin: 0; font-family: 'Do Hyeon', 'IBM Plex Sans KR', sans-serif; font-size: 1.40rem; font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; word-break: keep-all; text-wrap: balance; } .ds-sign-count { display: flex; align-items: baseline; gap: 2px; margin: 0; } .ds-sign-count .ds-num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; font-weight: 700; font-size: 1.40rem; } .ds-sign-count .ds-unit { font-size: 0.80rem; opacity: .8; }"
+    },
+    {
+      "name": "필터 Pill",
+      "kind": "chip",
+      "refersTo": "pill",
+      "description": "완전 원형 필터 칩. 선택되면 면색이 채워지는, 면색이 허용된 몇 안 되는 자리.",
+      "html": "<button class=\"ds-pill\">무료만</button> <button class=\"ds-pill ds-pill-active\">찜만 보기</button>",
+      "css": ".ds-pill { min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px; border: 1px solid var(--line, #DCDBD4); border-radius: 999px; background: #fff; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 1rem; color: var(--ink, #1A1A18); cursor: pointer; } .ds-pill:hover { border-color: var(--sign, #6E3B1F); } .ds-pill:focus-visible { outline: 2px solid var(--sign, #6E3B1F); outline-offset: 2px; } .ds-pill-active, .ds-pill-active:hover { background: var(--sign, #6E3B1F); border-color: var(--sign, #6E3B1F); color: #fff; }"
+    },
+    {
+      "name": "검색 입력",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "16px 하한과 44px 최소 높이를 지키는 텍스트 입력. 포커스는 테두리를 면색으로 바꾼다.",
+      "html": "<input class=\"ds-input-search\" type=\"search\" placeholder=\"박물관 이름이나 주소로 검색해 보세요\">",
+      "css": ".ds-input-search { width: 100%; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line, #DCDBD4); border-radius: 8px; background: #fff; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 1rem; color: var(--ink, #1A1A18); caret-color: var(--sign, #6E3B1F); outline: none; } .ds-input-search::placeholder { color: var(--ink-muted, #5F5E58); } .ds-input-search:hover { border-color: var(--ink-muted, #5F5E58); } .ds-input-search:focus { border-color: var(--sign, #6E3B1F); } .ds-input-search:focus-visible { outline: 2px solid var(--sign, #6E3B1F); outline-offset: 2px; }"
+    },
+    {
+      "name": "시설 카드",
+      "kind": "card",
+      "refersTo": "facility-card",
+      "description": "그림자 없이 1px 괘선으로만 서는 판. hover에서 테두리가 면색으로, 바닥이 옅은 면색으로 바뀐다.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-body\"><h3 class=\"ds-card-name\">국립중앙박물관</h3><div class=\"ds-card-tags\"><span class=\"ds-tag ds-tag-district\">서울 용산구</span><span class=\"ds-tag\">국립</span><span class=\"ds-tag ds-tag-free\">무료</span></div><p class=\"ds-card-info\">10:00–18:00 · 1월 1일 휴관</p></div></article>",
+      "css": ".ds-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line, #DCDBD4); border-radius: 10px; overflow: hidden; cursor: pointer; font-family: 'IBM Plex Sans KR', sans-serif; } .ds-card:hover { border-color: var(--sign, #6E3B1F); background: var(--sign-wash, #F3ECE7); } .ds-card-body { display: flex; flex-direction: column; gap: 7px; padding: 12px; } .ds-card-name { margin: 0; font-size: 1.40rem; font-weight: 600; line-height: 1.3; color: var(--ink, #1A1A18); } .ds-card-tags { display: flex; flex-wrap: wrap; gap: 5px; } .ds-card-info { margin: 0; font-size: 1rem; line-height: 1.5; color: var(--ink-muted, #5F5E58); }"
+    },
+    {
+      "name": "무료·유료 태그",
+      "kind": "chip",
+      "refersTo": "tag-free",
+      "description": "정보를 나르는 색만 남긴다. 무료만 면 채움, 유료는 외곽선 + 굵기. 유료까지 채우면 면색이 카드로 샌다.",
+      "html": "<span class=\"ds-tag\">국립</span> <span class=\"ds-tag ds-tag-free\">무료</span> <span class=\"ds-tag ds-tag-paid\">유료</span>",
+      "css": ".ds-tag { display: inline-block; padding: 3px 8px; border: 1px solid var(--line, #DCDBD4); border-radius: 4px; background: #fff; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 0.80rem; font-weight: 500; color: var(--ink-muted, #5F5E58); white-space: nowrap; } .ds-tag-district { color: var(--ink, #1A1A18); } .ds-tag-free { background: var(--free, #176B5B); border-color: var(--free, #176B5B); color: #fff; font-weight: 600; } .ds-tag-paid { border-color: var(--paid, #8A4B12); color: var(--paid, #8A4B12); font-weight: 600; }"
+    },
+    {
+      "name": "주 행동 버튼",
+      "kind": "button",
+      "refersTo": "button-sign",
+      "description": "면색 바탕 + 흰 글자. 지도 팝업의 '자세히 보기', 모달의 지도 버튼. 한 화면에 하나만 둔다.",
+      "html": "<button class=\"ds-btn-sign\">자세히 보기</button>",
+      "css": ".ds-btn-sign { min-height: 44px; padding: 0 16px; border: none; border-radius: 8px; background: var(--sign, #6E3B1F); color: #fff; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 1rem; cursor: pointer; } .ds-btn-sign:hover { filter: brightness(1.08); } .ds-btn-sign:focus-visible { outline: 2px solid var(--sign, #6E3B1F); outline-offset: 2px; } .ds-btn-sign:active { filter: brightness(.94); }"
+    },
+    {
+      "name": "외곽선 버튼",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "흰 판 위의 기본 행동. 상태 변화는 채움이 아니라 테두리 색으로만 표현한다.",
+      "html": "<button class=\"ds-btn-outline\"><svg class=\"ds-ico\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.6\"/></svg>지도에서 보기</button>",
+      "css": ".ds-btn-outline { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; padding: 0 12px; border: 1px solid var(--line, #DCDBD4); border-radius: 8px; background: #fff; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 0.80rem; color: var(--ink, #1A1A18); cursor: pointer; } .ds-btn-outline:hover { border-color: var(--sign, #6E3B1F); } .ds-btn-outline:focus-visible { outline: 2px solid var(--sign, #6E3B1F); outline-offset: 2px; } .ds-ico { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }"
+    },
+    {
+      "name": "뷰 토글",
+      "kind": "nav",
+      "refersTo": "pill",
+      "description": "≤900px에서만 나타나는 지도/목록 전환. 두 pill을 원형 테두리 하나 안에 이어 붙이고 사이를 inset 괘선으로 가른다.",
+      "html": "<div class=\"ds-viewtoggle\"><button class=\"ds-vt-pill\">지도</button><button class=\"ds-vt-pill ds-vt-active\">목록</button></div>",
+      "css": ".ds-viewtoggle { display: inline-flex; border: 1px solid var(--line, #DCDBD4); border-radius: 999px; overflow: hidden; background: #fff; } .ds-vt-pill { min-height: 44px; padding: 0 12px; border: none; border-radius: 0; background: transparent; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 0.80rem; color: var(--ink, #1A1A18); cursor: pointer; } .ds-vt-pill + .ds-vt-pill { box-shadow: inset 1px 0 0 var(--line, #DCDBD4); } .ds-vt-pill:focus-visible { outline: 2px solid var(--sign, #6E3B1F); outline-offset: -2px; } .ds-vt-active { background: var(--sign, #6E3B1F); color: #fff; }"
+    },
+    {
+      "name": "지도 범례",
+      "kind": "custom",
+      "refersTo": "panel",
+      "description": "지도 좌하단에 얹히는 반투명 흰 판. 10px 원 점이 마커의 --kind-* 색을 그대로 반복하고, 흰 테두리 + 검정 18% 아웃라인으로 밝은 타일 위에서도 경계를 남긴다.",
+      "html": "<div class=\"ds-legend\"><span><span class=\"ds-dot\" style=\"background:#8A5024\"></span>박물관</span><span><span class=\"ds-dot\" style=\"background:#E3B577\"></span>미술관</span><span><span class=\"ds-dot\" style=\"background:#2E1A0C\"></span>역사·민속</span><span><span class=\"ds-dot\" style=\"background:#6B7C9B\"></span>문학관</span></div>",
+      "css": ".ds-legend { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; padding: 7px 10px; border: 1px solid var(--line, #DCDBD4); border-radius: 8px; background: rgba(255,255,255,.94); font-family: 'IBM Plex Sans KR', sans-serif; font-size: 0.80rem; color: var(--ink, #1A1A18); } .ds-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #fff; outline: 1px solid rgba(0,0,0,.18); vertical-align: -1px; margin-right: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "길가의 갈색 표지판",
+    "overview": "이 시스템은 도로표지판의 규율을 화면으로 옮긴 것이다. 표지판에는 그라디언트도 그림자도 없다. 색이 있는 면(面) 한 판과 흰 글자, 그리고 판을 판으로 만드는 얇은 테두리가 전부다. 이 앱의 헤더는 그 판이고, 나머지 화면은 판이 읽히도록 조용히 물러난다. 면색은 도로표지규칙 제8조 — 문화재·관광 안내는 갈색 바탕에 흰 글자 — 에서 그대로 유도했다.\n\n밀도는 휴대폰 기준으로 짜여 있다. 모바일 우선 스타일시트 하나가 640px과 901px 두 번만 갈라지고, 데스크톱은 같은 판을 넓게 펼친 것이지 다른 디자인이 아니다. 사진도 로고도 없는 앱이므로 시각적 무게는 전부 면색·활자·픽토그램이 진다. 장식으로 존재하는 요소는 이 빌드에 하나도 없다.\n\n이 시스템은 워크스페이스의 지도 PWA 7종이 공유하는 파일럿이다. 앱 사이에서 달라지는 축은 정확히 세 개(--sign / --sign-ink / --sign-wash)와 --kind-* 램프뿐이고, 나머지 토큰·컴포넌트·규칙은 7개가 같은 값을 쓴다. 그러므로 값보다 유도 규칙이 정본이다. 값만 복사하면 면색이 밝은 앱(노랑 계열)에서 곧바로 어긋난다.",
+    "keyCharacteristics": [
+      "면색 한 개가 앱의 정체성 전부를 진다 — 표지판·활성 필터·마커에만 나온다",
+      "위계 표현에서 box-shadow를 완전히 뺐다. 깊이는 1px 괘선과 면색으로만 만든다",
+      "1.250 Major Third 6단계 밖의 글자 크기를 쓰지 않는다",
+      "아이콘은 두 계열뿐 — 헤더 픽토그램은 면 채움, 컨트롤은 1.8 선. 유니코드 글리프·이모지는 쓰지 않는다",
+      "터치 타깃 44px, 입력 글자 16px이 물러설 수 없는 하한이다",
+      "브라우저가 그리는 표면(선택 영역, 스크롤바, 캐럿, accent)까지 팔레트 안에 있다"
+    ],
+    "rules": [
+      { "name": "The Sign-Only Rule", "body": "면색은 표지판(헤더), 활성 상태(선택된 필터·찜 켜짐), 지도 마커, 그리고 단 하나의 주 행동 버튼에만 나온다. 카드·태그·패널 바탕으로 면색이 새는 순간 표지판은 표지판이기를 그만둔다. 무료/유료 태그가 '무료만 채우고 유료는 외곽선'인 것은 이 규칙의 직접 결과다.", "section": "colors" },
+      { "name": "The Carrying-Color Rule", "body": "색은 정보를 나를 때만 붙는다. 기본 태그는 무채색이고, 색이 붙은 태그는 그 색이 곧 의미다(청록=무료, 흙갈=유료). 같은 정보를 두 번 칠하지 않는다.", "section": "colors" },
+      { "name": "The Kind-Ramp Derivation Rule", "body": "--kind-* 램프는 값을 베끼는 것이 아니라 규칙으로 다시 유도한다. (1) 과반을 차지하는 범주는 중간 명도에 둔다. (2) 최암 범주는 명도로 확실히 분리한다. (3) 명도가 인접한 두 범주는 색상으로 갈라낸다. (4) 면색 계열 밖으로의 색상 이탈은 개체 수가 가장 적은 범주에만 허용한다. (5) 검증은 스와치가 아니라 지도 전면 렌더로 한다.", "section": "colors" },
+      { "name": "The Six-Step Rule", "body": "글자 크기는 1.250 Major Third 6단계(--fs-xxl 2.19 / --fs-xl 1.75 / --fs-l 1.40 / --fs-m 1.12 / --fs-base 1 / --fs-s 0.80rem) 안에서만 고른다. 새 크기가 필요하다는 느낌은 거의 항상 위계 설계가 틀렸다는 신호다.", "section": "typography" },
+      { "name": "The 16px Floor Rule", "body": "입력 가능한 요소(input, select)의 font-size는 --fs-base(16px) 아래로 내려가지 않는다. iOS Safari가 포커스 시 페이지를 확대해 버려 한 손 조작이 깨진다. 작아 보이고 싶으면 크기가 아니라 색과 여백으로 낮춘다.", "section": "typography" },
+      { "name": "The Standing Number Rule", "body": "사용자가 비교하는 숫자는 JetBrains Mono + font-variant-numeric: tabular-nums로 자리를 고정한다. 리포트 표 전체에도 같은 처리가 걸려 있다.", "section": "typography" },
+      { "name": "The One-Hand Rule", "body": "누를 수 있는 것은 전부 최소 44px(--tap)이다. 시각적으로 작아야 하는 컨트롤은 크기를 줄이는 대신 음수 마진으로 히트 영역만 넓힌다.", "section": "layout" },
+      { "name": "The Pointer-Gated Hover Rule", "body": "hover 스타일은 @media (hover: hover) 안에만 존재한다. 터치 기기에서 탭 뒤 hover가 고착되어 상태가 거짓말을 하는 것을 막는다.", "section": "layout" },
+      { "name": "The No-Lift Rule", "body": "어떤 요소도 그림자로 떠오르지 않는다. 상승감이 필요하다고 느껴지면 괘선을 쓰거나, 바탕을 --sign-wash로 바꾸거나, 면색 테두리로 상태를 알린다.", "section": "elevation" },
+      { "name": "The Border-Not-Fill Rule", "body": "상태 변화의 1차 수단은 채움이 아니라 테두리다. hover는 테두리를 --sign으로, 선택은 테두리와 채움을 동시에 --sign으로 바꾼다. 채움까지 가는 것은 '선택됨'에만 허용된다.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do 새 앱을 파생할 때 --sign / --sign-ink / --sign-wash 세 줄과 --kind-* 램프만 바꾼다. 나머지 토큰은 7개 앱 공통이다.",
+      "Do --kind-*를 값 복사가 아니라 The Kind-Ramp Derivation Rule로 다시 유도하고, 지도 전면 렌더로 검증한다.",
+      "Do 글자 크기를 6단계 토큰 안에서만 고른다.",
+      "Do 위계를 1px --line 괘선과 바탕 밝기 차이로 만든다.",
+      "Do 누를 수 있는 모든 것에 44px(--tap)을 준다. 작아 보여야 하면 음수 마진으로 히트 영역만 넓힌다.",
+      "Do 입력 요소의 글자 크기를 16px 이상으로 유지한다.",
+      "Do prefers-reduced-motion: reduce에서 transition: none !important를 쓴다. transition-duration: .01ms 스니펫은 transition-property가 all인 채로 남아 배경·테두리·transform 같은 상태 변화가 시작값에 고정돼 아예 렌더되지 않는다 — 이 빌드에서 실제로 발생했던 결함이다.",
+      "Do hover 규칙을 @media (hover: hover) 안에 가둔다.",
+      "Do 브라우저가 그리는 표면(::selection, 스크롤바, caret-color, accent-color)도 팔레트에서 테마한다.",
+      "Do 지도 마커·범례 색을 CSS 커스텀 프로퍼티에서 읽어 쓴다. 색값을 JS에 복제하지 않는다."
+    ],
+    "donts": [
+      "Don't 위계 표현에 box-shadow를 쓰지 않는다. 이 시스템에서 허용된 box-shadow는 헤더 안쪽 흰 테두리와 인접 pill 구분선, 두 가지 inset뿐이다.",
+      "Don't 그라디언트를 쓰지 않는다. 면은 단색이다.",
+      "Don't 면색을 카드·태그·패널 바탕으로 흘리지 않는다. 유료 태그를 채우고 싶어지는 순간이 규칙이 깨지는 지점이다.",
+      "Don't 유니코드 글리프나 이모지를 아이콘으로 쓰지 않는다. 아이콘은 인라인 SVG 두 계열(면 픽토그램, 1.8 선)뿐이다.",
+      "Don't 6단계 밖의 font-size를 새로 만들지 않는다.",
+      "Don't 표지판의 앱 이름을 말줄임(text-overflow: ellipsis)으로 자르지 않는다. 좁으면 어절 단위로 두 줄이 된다.",
+      "Don't 정보를 나르지 않는 색을 추가하지 않는다. 새 색을 넣기 전에 그 색이 무엇을 말하는지 한 문장으로 적을 수 있어야 한다.",
+      "Don't select에서 min-width: 0을 빼지 않는다."
+    ]
+  }
+}
